@@ -2,7 +2,7 @@
 
 namespace Omnipay\Btce\Message;
 
-use Omnipay\Common\Exception\InvalidResponseException;
+
 use Omnipay\Common\Message\AbstractRequest;
 
 class CompletePurchaseRequest extends AbstractRequest
@@ -54,8 +54,9 @@ class CompletePurchaseRequest extends AbstractRequest
         $sign = hash_hmac("sha512", $postDataString, $this->getSecret());
 
         $headers = [
-            'Sign: '.$sign,
-            'Key: '.$this->getAccount(),
+            'Content-Type' => 'multipart/form-data',
+            'Sign' => $sign,
+            'Key' => $this->getAccount(),
         ];
 
         $httpResponse = $this->httpClient->post($this->endpoint, $headers, $data)->send();

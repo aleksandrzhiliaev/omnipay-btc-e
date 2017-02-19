@@ -58,8 +58,9 @@ class RefundRequest extends AbstractRequest
         $sign = hash_hmac("sha512", $postDataString, $this->getSecret());
 
         $headers = [
-            'Sign: '.$sign,
-            'Key: '.$this->getAccount(),
+            'Content-Type' => 'multipart/form-data',
+            'Sign' => $sign,
+            'Key' => $this->getAccount(),
         ];
 
         $httpResponse = $this->httpClient->post($this->endpoint, $headers, $data)->send();
