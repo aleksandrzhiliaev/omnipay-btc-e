@@ -40,10 +40,25 @@ class RefundRequest extends AbstractRequest
         return $this->setParameter('payeeAccount', $value);
     }
 
+    public function getCurrency()
+    {
+        return $this->getParameter('currency');
+    }
+
+    public function setCurrency($value)
+    {
+        if ($value == 'RUB') {
+            $value = 'RUR';
+        }
+
+        return $this->setParameter('currency', $value);
+    }
+
 
     public function getData()
     {
         $this->validate('amount');
+
         return [
             'method' => 'CreateCoupon',
             'amount' => $this->getAmount(),
