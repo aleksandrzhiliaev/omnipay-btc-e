@@ -46,7 +46,7 @@ class RefundRequest extends AbstractRequest
         $this->validate('amount');
         return [
             'method' => 'CreateCoupon',
-            'currecny' => $this->getCurrency(),
+            'currency' => $this->getCurrency(),
             'receiver' => $this->getPayeeAccount(),
             'nonce' => time(),
         ];
