@@ -45,6 +45,7 @@ class RefundResponse extends AbstractResponse
         }
 
         if (isset($data->success) && $data->success == 1) {
+            $this->coupon = $data->return->coupon;
             $this->success = true;
             return true;
         }

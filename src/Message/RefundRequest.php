@@ -46,6 +46,7 @@ class RefundRequest extends AbstractRequest
         $this->validate('amount');
         return [
             'method' => 'CreateCoupon',
+            'amount' => $this->getAmount(),
             'currency' => $this->getCurrency(),
             'receiver' => $this->getPayeeAccount(),
             'nonce' => time(),
@@ -66,7 +67,7 @@ class RefundRequest extends AbstractRequest
         $httpResponse = $this->httpClient->post($this->endpoint, $headers, $data)->send();
         $json = json_decode($httpResponse->getBody(true));
 
-        return $this->response = new CompletePurchaseResponse($this, $json);
+        return $this->response = new RefundResponse($this, $json);
     }
 
 }
