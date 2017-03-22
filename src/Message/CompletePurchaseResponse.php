@@ -28,7 +28,7 @@ class CompletePurchaseResponse extends AbstractResponse
 
     public function getCurrency()
     {
-        return floatval($this->data->return->couponCurrency);
+        return $this->data->return->couponCurrency;
     }
 
     public function getMessage()
