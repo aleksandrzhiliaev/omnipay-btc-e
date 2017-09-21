@@ -5,7 +5,7 @@ namespace Omnipay\Btce\Message;
 
 class RefundRequest extends AbstractRequest
 {
-    private $endpoint = 'https://btc-e.com/tapi/';
+    private $endpoint = 'https://wex.nz/tapi/';
 
     public function getData()
     {
